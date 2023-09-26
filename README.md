@@ -2,6 +2,26 @@
 
 # ☵☵☵☵☵☵☵ ☰☰☰☰☰☰ ◈◈◈◈◈◈◈◈◈◈
 
+## Dependencies installed:
+
+# prop-types library: 
+npm install prop-types -> Then import to your project
+
+# Tailwind framework: 
+Follow the steps here to install: https://tailwindcss.com/docs/guides/create-react-app
+
+# Tailwind-merge utility library: 
+npm install tailwind-merge -> Then import to your componet
+
+# classnames library: 
+npm install classnames -> Then import to your project
+
+# react-icons library
+documentation: https://react-icons.github.io/react-icons
+npm install react-icons ->
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
