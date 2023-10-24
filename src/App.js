@@ -1,33 +1,31 @@
-import Accordion from "./components/Accordion";
+import Dropdown from "./components/Dropdown"
+import { useState } from "react";
+
 
 function App(){
-    const flowers = [
-        {
-            id: 1,
-            label: "Where do Roses originate from?",
-            content: "Roses are thought to have first been cultivated in China, where they were grown in the imperial gardens of the Chou dynasty as described by Confucius (551-479 BC). Many of the cultivated roses we grow today are hybrids and selections from species native to China."
-        },
-        {
-            id: 2,
-            label: "Where do Tulips originate from?",
-            content: "Tulip cultivation likely began in Persia (Iran) in the 10th century, and it eventually became a symbol of the Ottoman Empire."
-        }, 
-        {
-            id: 3,
-            label: "Where do Lilies originate from?",
-            content: "Lilies are among the oldest cultivated plants. In Asia Minor during the 2nd millennium BCE the bulb of the Madonna lily was cultivated for use in a medicinal ointment; the ancients raised the bulbs of this species for food."
-        }
-    ];
+    const [selection, setSelection] = useState(null); // null by default to indicate nothing has been selected.
+
+    const handleSelect = (option) => {
+        setSelection(option);
+    };
 
 
-
+    const options = [
+        // label -> is what text the user sees, value -> is how we figure out what the user has selected.
+        {label: 'RED', value: 'red'}, 
+        {label: 'GREEN', value: 'green'},
+        {label: 'BLUE', value: 'blue'},
+    ]
 
     return (
-        <div>
-            <Accordion flowers={flowers} /> {/* passing flowers function as a prop to <Accordion /> */} 
+        <div className="flex">
+            <Dropdown options={options} value={selection} onChange={handleSelect} />
         </div>
+        
     )
 };
 
 export default App;
 
+
+// Document-wide click eventhandler
