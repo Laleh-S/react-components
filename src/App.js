@@ -1,31 +1,32 @@
-import Dropdown from "./components/Dropdown"
-import { useState } from "react";
+// ① - We want to show the dropdown page whenever a user is at our root route whis is localhost:3000. 
 
+
+import Route from "./components/Route";
+import AccordionPage from "./pages/AccordionPage";
+import DropdownPage from "./pages/DropdownPage";
+import Sidebar from "./components/Sidebar";
+import ButtonPage from "./pages/ButtonPage";
 
 function App(){
-    const [selection, setSelection] = useState(null); // null by default to indicate nothing has been selected.
-
-    const handleSelect = (option) => {
-        setSelection(option);
-    };
-
-
-    const options = [
-        // label -> is what text the user sees, value -> is how we figure out what the user has selected.
-        {label: 'RED', value: 'red'}, 
-        {label: 'GREEN', value: 'green'},
-        {label: 'BLUE', value: 'blue'},
-    ]
 
     return (
-        <div className="flex">
-            <Dropdown options={options} value={selection} onChange={handleSelect} />
+        <div className="container mx-auto grid grid-cols-6 gap-4 mt-4">
+            <Sidebar />
+            <div className="col-span-5">
+                <Route path="/accordion">
+                    <AccordionPage />
+                </Route>
+                <Route path="/"> {/* ① */}
+                    <DropdownPage />
+                </Route>
+                <Route path="/button"> 
+                    <ButtonPage />
+                </Route>
+            </div>
         </div>
-        
-    )
+    );
 };
 
 export default App;
 
 
-// Document-wide click eventhandler
