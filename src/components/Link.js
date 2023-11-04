@@ -16,15 +16,22 @@
 // then we don't want to go through this behavior. Instead we want to allow the browser to handle the navigation event as usual 
 // and attempt to open up a new tab.
 
+
 import classNames from "classnames";
 import useNavigation from "../hooks/use-navigation";
 
 
-function Link({ to, children, className }){
+
+function Link({ to, children, className,  activeClassName}){
     // That's gonna give us back the entire object that we are sharing.
-    const { navigate } = useNavigation();
+    const { navigate, currentPath } = useNavigation();
     
-    const classes = classNames("text-blue-500", className);
+    const classes = classNames(
+        "text-blue-500", 
+        className, 
+        // if "currentPath" === "to" prop, then we want to add a className of "activeClassName" 
+        (currentPath === to && activeClassName)
+        );
 
     const handleClick = (event) => {
         console.log(event) //keep for testing the code bellow on console  //! ① 
