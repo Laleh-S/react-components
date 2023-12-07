@@ -13,8 +13,8 @@ function NavigationProvider({ children }) {
 // The only reason we have the state is to cause a re-render whenever a user clicks the forward and back buttons. That's all!!
     const [currentPath, setCurrentPath] = useState(window.location.pathname);
 
-    //◈◈◈◈◈◈◈◈◈◈ HANDLE USER CLICKING FORWARD AND BACK ◈◈◈◈◈◈◈◈◈◈//
-    //◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈// 
+    
+    //? ◈◈◈◈◈◈◈◈◈◈ HANDLE USER CLICKING FORWARD AND BACK ◈◈◈◈◈◈◈◈◈◈//
     // ONLY gonna handle when the user is going back and forth between different addresses user went to, using push state.
     useEffect (() => {
         const handler = () => {
@@ -27,15 +27,18 @@ function NavigationProvider({ children }) {
             window.removeEventListener('popstate', handler);
         };
     }, []); // [] runs this function only one time.
-    //◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈ END ◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈//
+    //? ◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈ END ◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈//
 
-    const navigate = (to) => {
-        window.history.pushState({}, '', to);
-        setCurrentPath(to);
+
+    //? ◈◈◈◈◈◈◈◈◈◈ NAVIGATE FUNCTION ◈◈◈◈◈◈◈◈◈◈//
+    const navigate = (to) => { // "to" is the path that we are trying to navigate to. example: to === "/accordion"
+        window.history.pushState({}, '', to); 
+        setCurrentPath(to); // updating our current piece of state by calling setCureentPath to whatever "to" was.
     };
-
+    //?◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈ END ◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈◈//
+    
     return (
-        <NavigationContext.Provider value={{ currentPath, navigate}}>
+        <NavigationContext.Provider value={{ currentPath, navigate }}> 
             {children}
         </NavigationContext.Provider>
     );

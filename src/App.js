@@ -1,5 +1,8 @@
 // ① - We want to show the dropdown page whenever a user is at our root route whis is localhost:3000. 
 
+// Here, we dieciding what content we are showing on the screen using the "currentpath" by We're gonna add in a new component called a 
+// "Route" component. The app component is gonna show a couple of different route components. Each route component is going to be given
+// a different set of props. a "path" prop and a "children" prop. 
 
 import Route from "./components/Route";
 import AccordionPage from "./pages/AccordionPage";
