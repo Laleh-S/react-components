@@ -1,6 +1,6 @@
 // ① - We want to show the dropdown page whenever a user is at our root route whis is localhost:3000. 
 
-// Here, we dieciding what content we are showing on the screen using the "currentpath" by We're gonna add in a new component called a 
+// Here, we deciding what content we are showing on the screen using the "currentpath" by We're gonna add in a new component called a 
 // "Route" component. The app component is gonna show a couple of different route components. Each route component is going to be given
 // a different set of props. a "path" prop and a "children" prop. 
 
@@ -10,6 +10,9 @@ import DropdownPage from "./pages/DropdownPage";
 import Sidebar from "./components/Sidebar";
 import ButtonPage from "./pages/ButtonPage";
 import ModalPage from "./pages/ModalPage";
+import TablePage from "./pages/TablePage";
+
+
 
 function App(){
 
@@ -26,8 +29,11 @@ function App(){
                 <Route path="/button"> 
                     <ButtonPage />
                 </Route>
-                <Route path="/modal"> 
+                <Route path="/modal"> {/* Whenever user is in this path, we want to show our Modal component */}
                     <ModalPage />
+                </Route>
+                <Route path="/table"> {/* Whenever user is in this path, we want to show our TablePage component */}
+                    <TablePage />
                 </Route>
             </div>
         </div>

@@ -1,4 +1,5 @@
 // We are going to style our button using our reusable button that we created. Therefore we import the "button" component.
+// This page is the Parent component for Modal component.
 
 import Modal from "../components/Modal";
 import Button from "../components/Button";

@@ -1,3 +1,5 @@
+// This page is the Parent component for Accordion component. 
+
 import Accordion from "../components/Accordion";
 
 function AccordionPage(){
