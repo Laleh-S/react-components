@@ -3,10 +3,10 @@
 // <tr> represents one row of headers. 
 // <th> Each individual header column. Example: fruit name, color, score
 
-//! IMPORTANT
-// The goal of our "Table.js" component is to be able to receive any kind of data and render it out as a table.
+//! NOTE
+// The goal of our "Table.js" component is to be reusable and able to receive any kind of data and render it out as a table.
 
-//! IMPORTANT: ① 
+//! NOTE: ① 
 // The column object is going to be each of the config objects in "TablePage.js". 
 
 // Instead of writing out each individual <td> one by one, we are produce them by mapping over our config array. Inside "renderedCells" 
@@ -21,11 +21,17 @@
 // means we want to have three <td> elements inside of each row.
 //! -----
 
-
-
+// Fragment is a react frature that allows you to return multiple elements from a React component by allowing you to group a 
+// list of children without adding extra nodes to the DOM. 
+import { Fragment } from "react";
 
 function Table( {data, config, keyFunc} ) {
+    //*  ◈◈◈◈◈◈◈◈◈◈ LIST OF OUR HEADERS ◈◈◈◈◈◈◈◈◈◈
     const renderedHeaders = config.map((column) => {
+        if (column.header) {
+            // we call the header function we created inside our "config" obj "score label" in our TablePage.js
+            return <Fragment key={column.label}>{column.header()}</Fragment>
+        }
         return (
             <th key={column.label}>{column.label}</th>
         );

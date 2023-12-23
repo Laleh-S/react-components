@@ -1,7 +1,5 @@
 # Getting Started with Create React App
 
-# ☵☵☵☵☵☵☵ ☰☰☰☰☰☰ ◈◈◈◈◈◈◈◈◈◈
-
 ## Dependencies installed:
 
 # prop-types library: 
