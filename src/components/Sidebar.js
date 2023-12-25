@@ -20,6 +20,7 @@ function Sidebar () {
         { label: "Button", path: "/button" },
         { label: "Modal", path: "/modal" },
         { label: "Table", path: "/table" }, // Whenever a user clicks on this, we're gonna take them to a path of "/table".
+        { label: "Counter", path: "/counter" },
     ];
 
     const renderedLinks = links.map((link) => {

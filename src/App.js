@@ -11,6 +11,7 @@ import Sidebar from "./components/Sidebar";
 import ButtonPage from "./pages/ButtonPage";
 import ModalPage from "./pages/ModalPage";
 import TablePage from "./pages/TablePage";
+import CounterPage from "./pages/CounterPage";
 
 
 
@@ -34,6 +35,9 @@ function App(){
                 </Route>
                 <Route path="/table"> {/* Whenever user is in this path, we want to show our TablePage component */}
                     <TablePage />
+                </Route>
+                <Route path="/counter"> {/* Whenever user is in this path, we want to show our CounterPage component */}
+                    <CounterPage initialCount={10}/>
                 </Route>
             </div>
         </div>
