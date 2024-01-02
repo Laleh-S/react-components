@@ -1,8 +1,10 @@
 
-// ① We want to make sure the "renderedOptions div" is hidden by default and whenever the user clicks on the "select... div", we 
+//! ① 
+// We want to make sure the "renderedOptions div" is hidden by default and whenever the user clicks on the "select... div", we 
 // toggle the visiblity of the "renderedOptions div" so we are going to either hide or show it.
 
-// ② JavaScript boolean expressions:
+//! ② 
+// JavaScript boolean expressions:
 // || gives back the first value that is truthy. 
 // && gives back the first falsy if there is one, or the last truthy value.
 // Reminder: React does not print booleans, nulls, undefined.
@@ -10,21 +12,25 @@
 // If isOpen is true, we are going to get back the "div" and it will be desplayed on the page.
 // If it is false the entire expression evaluate to be false and nothing will display on the page.
 
-// ③ To know what option user clicked on, rather than passing in our handler directly to onClick,
+//! ③ 
+// To know what option user clicked on, rather than passing in our handler directly to onClick,
 // we're going to instead put in a wrapped version of it. So we put and arrow function and 
 // then whenever this arrow function gets called by the div, when the user clicks on it eventually,
 // we're going to invoke handleOptionClick and pass in the option.
 
-// ④ So we don't always want to show Select..., we only want to show it if the value prop is null.
+//! ④ 
+// So we don't always want to show Select..., we only want to show it if the value prop is null.
 // The value can be either an object or null. 
 
-// ⑤ we need to make sure that when our dropdown component is about to be removed from the screen, we don't want to listen
+//! ⑤ 
+// we need to make sure that when our dropdown component is about to be removed from the screen, we don't want to listen
 // for the click event anymore because we don't need to worry about the dropdown. The dropdown is not gonna be visible.
 // We don't have to worry about changing the IsOpen flag or anything like that. So inside our useEffect function we are  going 
 // to return a cleanup function. So we return a function here. This will be called automatically whenever our
 // dropdown component is about to be removed from the screen.
 
-// ⑥ useRef allows a component to get a reference to a DOM element that it creates.
+//! ⑥ 
+// useRef allows a component to get a reference to a DOM element that it creates.
 // 95% of the time used with DOM elements , but can hold a reference to any value.
 // useRef IMPLEMENTATION:
 // 1- Create a ref at the top of your component by calling "useRef"

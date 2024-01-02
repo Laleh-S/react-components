@@ -1,15 +1,18 @@
 
-// ① When we provide a "true" value for primary, secondary, success, warning, danger it comes up as true. When we dont pass 
+//! ①  
+// When we provide a "true" value for primary, secondary, success, warning, danger it comes up as true. When we dont pass 
 // a value it will come up as undefined. 
 // To check this, we turn the "true" and "undefined" value into numbers, add them together and total must be more than 1 less than 2
 // Number(true) -> output 1
 // Number(!!undefined) -> output 0
 
-// ② Tailwind text-white overrides other colors. The solution is to:
+//! ②   
+// Tailwind text-white overrides other colors. The solution is to:
 // Install tailwind-merge library then import it to the appropriate component.
 
-// ③ ...rest means besides the ones listed here, get all the remaining properties such as 
-    //onClick or onMouseOver or className and etc out of the props object and asign them to a variable called rest.
+//! ③  
+// ...rest means besides the ones listed here, get all the remaining properties such as 
+//onClick or onMouseOver or className and etc out of the props object and asign them to a variable called rest.
 
 
 import className from "classnames"; // changing the classname variable name to "className" to avoid mistakes.

@@ -1,4 +1,4 @@
-// reusable presentation components: 
+// Reusable Presentation Components: 
 // 1- Create a new component that shows a handful of JSX elements.
 // 2- Make sure the component accepts + uses the "children" prop.
 // 3- Allow extra classNames to be passed in + merge them.
