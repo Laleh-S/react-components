@@ -10,7 +10,6 @@
 // Whenever we submit a form, the browser by default is going to try to submit the form to a backend server and we usually 
 // never want that default behavior. To avoid this we call "event.preventDefault()"
 
-
 //! useReducer:
 // useReducer is an alternative to useState. useReducer is most useful whenever we have multiple pieces of state that are very 
 // closely related to each other. It's also useful whenever we have some state where the future value of that state depends upon 
@@ -23,7 +22,6 @@
 
 // Second argument: by convention called "action". The value of "action" is whatever we passed into dispatch as a first argument 
 // only. we call dispatch anytime we want to update our state.
-
 
 //! What happens when we call dispatch() to update our state ??? 
 // When we call dispatch(), React is going to find the "reducer" function that we defined and passed as a first argument inside 
@@ -39,14 +37,30 @@
 // Whenever we want to update our states. We're going to "dispatch()" an object that has a "type" that is gonna be a string, and if
 // we need to communicate any data along, we're going to place it in the "payload" property.
 
-//! IMPORTANT NOTE about updating our state inside the "reducer":
-
 //! Modifying states 
 // When we want to modify state, we will call dispatch and ALWAYS pass in an "action" object.
 // The "action" object will always have a "type" that is a string. This tells the "reducer" what state update it needs to make.
 // If we need to comunicate some data to the "reducer", it will be placed on the "playload" property of the action object.
 
+//! IMMER:
+// Immer is a library that allows us to change how we write our reducers. It allows us to write out codes that directly modifies 
+// our state object. Normally this would be a huge problem. We normally absolutely do not do this whatsoever. But the Immer Library 
+// is going to allow us to break that rule and directly modify state.
+// We no longer need to create a new object and use "...state" to copy paste all the values from the current state.
 
+//! REDUCER VS IMMER
+// In a normal "reducer", we do not directly change our state. We use "...state" and copy and paste all the properties into a new 
+// object then modify that object. Inside of our reducer, we absolutely always must return the new value that we want to use for our 
+// state.
+
+// When using "immer" however, we can now directly modify state without using of "...state" and copy and pasting. Also when using 
+// immer we no longer have to return a value from the reducer function. It is not required and it is not being used if we did return.
+// Instead, immer is going to watch for whatever changes you make to that state object. And it's going to automatically take care
+// of creating a new state object for you and then passing that back into the world of react. However, we have to add in a return 
+// statement in each of our cases of a switch statement, because otherwise switch statements work in a kind of undesirable fashion, 
+// kind of. It's kind of debatable whether we want them to work like this or not.
+
+import { produce } from "immer"; // after importing produce, we then wrap our reducer function in produce().
 import { useReducer } from "react";
 import Button from "../components/Button"
 import Panel from "../components/Panel"
@@ -62,35 +76,27 @@ const ADD_VALUE_TO_COUNT = "add_value_to_count";
 const reducer = (state, action) => {
     switch (action.type) { 
         case INCREMENT_COUNT: // if action.type is === IINCREMENT_COUNT then run the following code
-            return {
-                ...state, // retun a new obj, copy paste all the properties of our curent state with updated value for count
-                count: state.count + 1
-            }
+            state.count = state.count + 1;
+            return;
         case DECREMENT_COUNT:
-            return {
-                ...state,
-                count: state.count - 1
-            }
+            state.count = state.count - 1;
+            return;
+        case ADD_VALUE_TO_COUNT: // if action.type is === SET_VALUE_TO_ADD then run the following code 
+            state.count = state.count + state.valueToAdd;
+            state.valueToAdd = 0; // reset valueToAdd back to 0
+            return;
         case SET_VALUE_TO_ADD: // if action.type is === SET_VALUE_TO_ADD then run the following code 
-            return {
-                ...state,
-                valueToAdd: action.payload
-            }
-            case ADD_VALUE_TO_COUNT: // if action.type is === SET_VALUE_TO_ADD then run the following code 
-            return {
-                ...state,
-                count: state.count + state.valueToAdd,
-                valueToAdd: 0 // reset valueToAdd back to 0
-            }
-        default: // if there is no match, return state
-            return state;  // MUST always return the current state. if we return nothing, then our state will be undefined.
+            state.valueToAdd = action.payload
+            return;
+        default: 
+            return;  
     };
 };
 
 
 function CounterPage ({ initialCount }) {
     // if we add any argument to "dispatch" it will show up as a second argument in "reducer".
-    const [state, dispatch] = useReducer(reducer, { // <- we add "reducer" function as our first argument.
+    const [state, dispatch] = useReducer(produce(reducer), { // <- we add "reducer" function as our first argument.
         count: initialCount, // initial value for count
         valueToAdd: 0 // initial value for valueToAdd
     });
@@ -160,6 +166,8 @@ function CounterPage ({ initialCount }) {
 };
 
 export default CounterPage;
+
+
 
 
 
